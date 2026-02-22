@@ -3,89 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SteamZip - Asset Generator</title>
+    <title>SteamZip Hero Recreation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <style>
-        /* Custom Fonts */
-        .font-oswald { font-family: 'Oswald', sans-serif; }
-        .font-serif-custom { font-family: 'Playfair Display', serif; }
-        .font-sans-custom { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
-        /* Grid Pattern for Red Section */
-        .bg-grid-pattern {
-            background-image: 
-                linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
+        :root {
+            --brand-red: #e62400;
+            --brand-black: #0a0a0a;
         }
 
-        /* Animation keyframes */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-serif-custom {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-anton {
+            font-family: 'Anton', sans-serif;
+        }
+
+        .fake-italic {
+            transform: skewX(-12deg);
+            display: inline-block;
+        }
+
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-                filter: blur(4px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Base animation classes */
         .animate-fade-in-up {
             opacity: 0;
-            animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         .animate-fade-in {
             opacity: 0;
-            animation: fadeIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         .animate-scale-in {
             opacity: 0;
-            animation: scaleIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .animate-slide-in {
-            opacity: 0;
-            animation: slideInRight 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-        }
-
-        /* Staggered delays */
         .delay-0 { animation-delay: 0ms; }
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
@@ -93,236 +65,186 @@
         .delay-400 { animation-delay: 400ms; }
         .delay-500 { animation-delay: 500ms; }
         .delay-600 { animation-delay: 600ms; }
-        .delay-700 { animation-delay: 700ms; }
-        .delay-800 { animation-delay: 800ms; }
 
-        /* Utilities */
         .text-balance { text-wrap: balance; }
         .text-pretty { text-wrap: pretty; }
-        
-        /* Custom scrollbar hide */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
 
         @media (prefers-reduced-motion: reduce) {
-            .animate-fade-in-up,
-            .animate-fade-in,
-            .animate-scale-in,
-            .animate-slide-in {
+            .animate-fade-in-up, .animate-fade-in, .animate-scale-in {
                 animation: none;
                 opacity: 1;
                 transform: none;
-                filter: none;
             }
+        }
+
+        /* Grid Pattern for Red Section */
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 64px 64px;
         }
     </style>
 </head>
-<body class="bg-white text-black font-sans-custom overflow-x-hidden">
+<body class="min-h-screen flex flex-col overflow-x-hidden">
 
-    <!-- Main Container -->
-    <div class="w-full border-b border-black">
-        
-        <!-- Header -->
-        <header class="h-16 border-b border-black flex items-center justify-between bg-white relative z-50 animate-fade-in delay-0">
-            <!-- Logo Left -->
-            <div class="h-full flex items-center px-6 border-r border-black w-auto md:w-64 shrink-0">
-                <span class="font-oswald font-bold text-2xl tracking-tight">STEAMZIP</span>
+    <!-- Top Navigation -->
+    <nav class="flex h-[72px] border-b border-gray-200 bg-white relative z-20 animate-fade-in delay-0 shrink-0">
+        <div class="w-[240px] flex items-center justify-center border-r border-gray-200">
+            <div class="font-black text-2xl tracking-tighter uppercase">
+                STEAM<span class="text-[#e62400]">ZIP</span>
             </div>
+        </div>
+        <div class="flex-1 flex items-center justify-center">
+            <span class="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase">
+                Steam Store Asset Generator — Coming Soon
+            </span>
+        </div>
+        <div class="w-[72px] flex items-center justify-center border-l border-gray-200">
+            <div class="font-black text-2xl tracking-tighter uppercase">
+                S<span class="text-[#e62400]">Z</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Split Hero -->
+    <main class="flex flex-1 min-h-[600px]">
+        
+        <!-- Left Red Section -->
+        <section class="w-1/2 bg-[#e62400] relative overflow-hidden flex flex-col justify-center px-16 py-20">
+            <!-- Background Grid -->
+            <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
             
-            <!-- Center Text -->
-            <div class="hidden md:flex flex-grow items-center justify-center px-4">
-                <p class="text-[10px] md:text-xs font-medium tracking-[0.2em] text-gray-400 uppercase text-center">
-                    Steam Store Asset Generator — Coming Soon
+            <!-- Watermark -->
+            <div class="absolute -top-16 -left-8 text-[28rem] font-anton leading-none text-black opacity-[0.06] select-none pointer-events-none tracking-normal">
+                SZ
+            </div>
+
+            <div class="relative z-10 animate-fade-in-up delay-100 max-w-xl">
+                <!-- Badges -->
+                <div class="flex gap-3 mb-10">
+                    <div class="border border-white/40 text-white px-4 py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase">
+                        One $9 Payment
+                    </div>
+                    <div class="bg-white text-[#e62400] px-4 py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase shadow-sm">
+                        No Subscription
+                    </div>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-white flex flex-col font-anton text-[8rem] leading-[0.85] uppercase tracking-wide">
+                    <span>STEAM</span>
+                    <span class="fake-italic pr-4">ASSET</span>
+                    <span>PACK</span>
+                    <span class="fake-italic pr-4">GENERATOR</span>
+                </h1>
+            </div>
+        </section>
+
+        <!-- Right White Grid Section -->
+        <section class="w-1/2 bg-gray-200 grid grid-cols-2 grid-rows-2 gap-[1px]">
+            
+            <!-- Step 01 -->
+            <div class="bg-white p-14 relative flex flex-col justify-center animate-fade-in-up delay-200 group">
+                <div class="text-[5rem] font-anton text-gray-200 mb-4 leading-none">01</div>
+                <h3 class="font-black text-lg uppercase tracking-tight mb-3 text-gray-900">Upload Master Art</h3>
+                <p class="font-serif-custom text-gray-500 text-[16px] leading-relaxed text-pretty pr-4">
+                    <span class="text-[#e62400]">3840×2160</span> One file powers every size and ratio.
                 </p>
             </div>
 
-            <!-- Logo Right -->
-            <div class="h-full flex items-center justify-center px-6 border-l border-black w-16 md:w-20 shrink-0">
-                <div class="font-oswald font-bold text-2xl tracking-tighter">
-                    <span>S</span><span class="text-[#E31E00]">Z</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Grid Layout -->
-        <main class="grid grid-cols-1 lg:grid-cols-2">
-            
-            <!-- LEFT COLUMN -->
-            <div class="flex flex-col border-r-0 lg:border-r border-black">
-                
-                <!-- Red Hero Section -->
-                <div class="relative bg-[#E31E00] text-white p-8 md:p-12 lg:p-16 overflow-hidden min-h-[500px] lg:min-h-[600px] flex flex-col justify-center border-b border-black">
-                    <!-- Grid Background -->
-                    <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none animate-fade-in delay-200"></div>
-                    
-                    <!-- Watermark -->
-                    <div class="absolute -top-10 -left-10 text-black opacity-[0.05] font-oswald font-bold text-[400px] leading-none select-none pointer-events-none transform -rotate-12">
-                        SZ
-                    </div>
-
-                    <!-- Content -->
-                    <div class="relative z-10">
-                        <!-- Badge -->
-                        <div class="inline-block border border-white/40 px-4 py-1.5 mb-8 animate-fade-in-up delay-100">
-                            <span class="text-xs font-medium tracking-[0.2em] uppercase">Launching Soon</span>
-                        </div>
-
-                        <!-- Headline -->
-                        <h1 class="font-oswald font-bold text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] leading-[0.85] uppercase tracking-tight">
-                            <div class="animate-fade-in-up delay-200">Steam</div>
-                            <div class="italic animate-fade-in-up delay-300">Asset</div>
-                            <div class="animate-fade-in-up delay-400">Pack</div>
-                            <div class="italic animate-fade-in-up delay-500">Generator</div>
-                        </h1>
-                    </div>
-                </div>
-
-                <!-- Bottom Left Text Section -->
-                <div class="bg-white p-8 md:p-12 lg:p-16 flex-grow flex items-center border-b border-black lg:border-b-0">
-                    <p class="font-serif-custom italic text-2xl md:text-3xl lg:text-4xl text-gray-600 leading-relaxed text-pretty max-w-2xl animate-fade-in-up delay-600">
-                        Steam requires 8 images with exact pixel dimensions. Upload your art once and get every asset, perfectly cropped, in 60 seconds.
-                    </p>
-                </div>
+            <!-- Step 02 -->
+            <div class="bg-white p-14 relative flex flex-col justify-center animate-fade-in-up delay-300 group">
+                <div class="text-[5rem] font-anton text-gray-200 mb-4 leading-none">02</div>
+                <h3 class="font-black text-lg uppercase tracking-tight mb-3 text-gray-900">Set Focal Point</h3>
+                <p class="font-serif-custom text-gray-500 text-[16px] leading-relaxed text-pretty pr-4">
+                    Pin the subject. Every crop stays <span class="text-[#e62400]">perfectly composed</span>.
+                </p>
             </div>
 
-            <!-- RIGHT COLUMN -->
-            <div class="flex flex-col">
-                
-                <!-- Steps Grid (2x2) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 border-b border-black">
-                    
-                    <!-- Step 01 -->
-                    <div class="p-8 md:p-10 border-b md:border-b-0 border-black md:border-r relative group animate-fade-in delay-300">
-                        <span class="absolute top-6 left-8 text-6xl font-oswald font-bold text-gray-100 -z-10 select-none">01</span>
-                        <div class="relative z-10 mt-4">
-                            <h3 class="font-oswald font-bold text-lg uppercase tracking-wide mb-3">Upload Master Art</h3>
-                            <p class="font-serif-custom text-gray-500 text-lg leading-relaxed">
-                                <span class="text-[#E31E00] font-semibold">3840×2160</span> One file powers every size and ratio.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 02 -->
-                    <div class="p-8 md:p-10 border-b border-black md:border-b-0 relative group animate-fade-in delay-400">
-                        <span class="absolute top-6 left-8 text-6xl font-oswald font-bold text-gray-100 -z-10 select-none">02</span>
-                        <div class="relative z-10 mt-4">
-                            <h3 class="font-oswald font-bold text-lg uppercase tracking-wide mb-3">Set Focal Point</h3>
-                            <p class="font-serif-custom text-gray-500 text-lg leading-relaxed">
-                                Pin the subject. Every crop stays <span class="text-[#E31E00] font-semibold">perfectly composed</span>.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step 03 -->
-                    <div class="p-8 md:p-10 border-b md:border-b-0 border-black md:border-r relative group animate-fade-in delay-500">
-                        <span class="absolute top-6 left-8 text-6xl font-oswald font-bold text-gray-100 -z-10 select-none">03</span>
-                        <div class="relative z-10 mt-4">
-                            <h3 class="font-oswald font-bold text-lg uppercase tracking-wide mb-3">Download Pack</h3>
-                            <p class="font-serif-custom text-gray-500 text-lg leading-relaxed">
-                                One 9$ payment <span class="text-[#E31E00] font-semibold">instant ZIP</span>. No subscription BS.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Step Free -->
-                    <div class="p-8 md:p-10 relative group animate-fade-in delay-600">
-                        <span class="absolute top-8 left-8 text-5xl font-oswald font-bold text-gray-200 -z-10 select-none">Free</span>
-                        <div class="relative z-10 mt-4">
-                            <h3 class="font-oswald font-bold text-lg uppercase tracking-wide mb-3">Preview First</h3>
-                            <p class="font-serif-custom text-gray-500 text-lg leading-relaxed">
-                                The <span class="text-[#E31E00] font-semibold">Header Capsule</span> is always free. Try it before you buy.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Specs Strip -->
-                <div class="bg-[#F5F5F5] border-b border-black py-4 px-6 overflow-x-auto no-scrollbar animate-fade-in delay-700">
-                    <div class="flex space-x-8 min-w-max">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-[#E31E00]">Header Capsule</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">460 × 215</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Small Capsule</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">231 × 87</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Main Capsule</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">616 × 353</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Vertical Capsule</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">374 × 448</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Library Capsule</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">600 × 900</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Library Hero</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">3840 × 1240</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Page Background</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">1438 × 810</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Community Art</span>
-                            <span class="text-[10px] text-gray-400 font-mono mt-0.5">800 × 450</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Black Waitlist Section -->
-                <div class="bg-[#0a0a0a] text-white p-8 md:p-12 flex-grow flex flex-col justify-between animate-fade-in delay-700">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
-                        <div>
-                            <h2 class="font-oswald font-bold text-3xl md:text-4xl uppercase leading-none">
-                                Join The<br><span class="text-[#E31E00]">Waitlist</span>
-                            </h2>
-                        </div>
-                        <div class="text-right hidden md:block">
-                            <p class="text-[10px] font-medium tracking-[0.15em] text-gray-500 uppercase leading-loose">
-                                First 100 Sign-ups<br>
-                                Receive <span class="text-[#E31E00]">50% Off</span><br>
-                                At Launch
-                            </p>
-                        </div>
-                    </div>
-
-                    <form class="w-full mb-4" onsubmit="event.preventDefault();">
-                        <div class="flex flex-col sm:flex-row h-auto sm:h-12">
-                            <input type="email" placeholder="your@email.com" class="flex-grow bg-[#111] border border-gray-800 text-gray-300 px-4 py-3 sm:py-0 text-sm focus:outline-none focus:border-[#E31E00] transition-colors font-sans-custom placeholder-gray-700">
-                            <button type="submit" class="bg-[#E31E00] text-white font-oswald font-bold uppercase tracking-widest px-8 py-3 sm:py-0 text-sm hover:bg-red-600 transition-colors flex items-center justify-center gap-2 group">
-                                Register
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-
-                    <div class="flex justify-between items-center mt-2">
-                        <p class="text-[9px] text-gray-600 uppercase tracking-widest font-medium">
-                            No Account · No Spam · Files Deleted After 24h · $9 Per Pack
-                        </p>
-                        <!-- Mobile only text -->
-                        <div class="md:hidden text-right">
-                            <p class="text-[9px] font-medium tracking-[0.1em] text-gray-500 uppercase">
-                                <span class="text-[#E31E00]">50% Off</span> First 100
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Step 03 -->
+            <div class="bg-white p-14 relative flex flex-col justify-center animate-fade-in-up delay-400 group">
+                <div class="text-[5rem] font-anton text-gray-200 mb-4 leading-none">03</div>
+                <h3 class="font-black text-lg uppercase tracking-tight mb-3 text-gray-900">Preview First</h3>
+                <p class="font-serif-custom text-gray-500 text-[16px] leading-relaxed text-pretty pr-4">
+                    Preview <span class="text-[#e62400]">everything</span> it's free. Try it before you buy.
+                </p>
             </div>
-        </main>
+
+            <!-- Step 04 -->
+            <div class="bg-white p-14 relative flex flex-col justify-center animate-fade-in-up delay-500 group">
+                <div class="text-[5rem] font-anton text-gray-200 mb-4 leading-none">04</div>
+                <h3 class="font-black text-lg uppercase tracking-tight mb-3 text-gray-900">Download Pack</h3>
+                <p class="font-serif-custom text-gray-500 text-[16px] leading-relaxed text-pretty pr-4">
+                    A ZIP with all the assets, <span class="text-[#e62400]">ready to upload on Steam.</span>
+                </p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Ticker Bar -->
+    <div class="bg-[#0a0a0a] text-white py-4 flex justify-center items-center gap-6 text-[10px] font-bold tracking-[0.2em] uppercase animate-fade-in delay-600 shrink-0 border-y border-[#1a1a1a] overflow-hidden whitespace-nowrap">
+        <span class="w-1 h-1 rounded-full bg-gray-700 shrink-0"></span>
+        <div>Small Capsule <span class="text-[#e62400] ml-1">462 × 174</span></div>
+        <span class="w-1 h-1 rounded-full bg-gray-700 shrink-0"></span>
+        <div>Main Capsule <span class="text-[#e62400] ml-1">1232 × 706</span></div>
+        <span class="w-1 h-1 rounded-full bg-gray-700 shrink-0"></span>
+        <div>Vertical Capsule <span class="text-[#e62400] ml-1">748 × 896</span></div>
+        <span class="w-1 h-1 rounded-full bg-gray-700 shrink-0"></span>
+        <div>Screenshots <span class="text-[#e62400] ml-1">1920 × 1080</span></div>
+        <span class="w-1 h-1 rounded-full bg-gray-700 shrink-0"></span>
+        <div>Page Background <span class="text-[#e62400] ml-1">1438 × 810</span></div>
+        <span class="w-1 h-1 rounded-full bg-gray-700 shrink-0"></span>
+        <div>Shortcut Icon <span class="text-[#e62400] ml-1">256 × 256</span></div>
+        <span class="w-1 h-1 rounded-full bg-gray-700 shrink-0"></span>
     </div>
+
+    <!-- Bottom Split Section -->
+    <section class="flex h-[340px] shrink-0">
+        
+        <!-- Left White Text -->
+        <div class="w-1/2 bg-white px-20 py-16 flex items-center animate-fade-in-up delay-500">
+            <p class="font-serif-custom italic text-[30px] text-gray-600 leading-[1.5] text-balance max-w-lg">
+                Steam requires 14 assets with exact pixel dimensions. Upload One Image and get every file, perfectly cropped, in 60 seconds.
+            </p>
+        </div>
+
+        <!-- Right Black Form -->
+        <div class="w-1/2 bg-[#0a0a0a] px-20 py-16 flex flex-col justify-center animate-fade-in-up delay-600">
+            
+            <div class="flex justify-between items-end mb-8 w-full max-w-xl">
+                <h2 class="text-[4rem] font-anton leading-[0.9] uppercase tracking-wide">
+                    <span class="text-white block">JOIN THE</span>
+                    <span class="text-[#e62400] block">WAITLIST</span>
+                </h2>
+                <div class="text-right text-[11px] font-bold tracking-[0.15em] uppercase pb-2">
+                    <div class="text-gray-500 mb-1">EARLY ACCESS</div>
+                    <div class="text-gray-400">MEMBERS GET <span class="text-[#e62400]">50% OFF</span></div>
+                </div>
+            </div>
+
+            <form class="flex h-14 w-full max-w-xl" onsubmit="event.preventDefault();">
+                <input 
+                    type="email" 
+                    placeholder="your@email.com" 
+                    class="flex-1 bg-[#111111] border border-[#222222] px-6 text-white text-sm focus:outline-none focus:border-gray-500 transition-colors placeholder:text-gray-700 font-medium"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="bg-[#e62400] text-white px-8 font-bold tracking-[0.15em] text-xs uppercase hover:bg-[#ff2a00] transition-colors duration-200 active:scale-[0.98]"
+                >
+                    Join Waitlist
+                </button>
+            </form>
+
+            <div class="mt-5 text-[10px] text-gray-600 tracking-[0.2em] uppercase font-medium">
+                No Account · No Spam · Files Deleted After 24H · $9 Per Pack
+            </div>
+
+        </div>
+    </section>
+
 </body>
 </html>
